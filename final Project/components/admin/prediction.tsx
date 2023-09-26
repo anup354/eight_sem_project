@@ -201,7 +201,7 @@ const AdminPrediction = () => {
           };
           return (
             <>
-              <div className="relative">
+              <div className="relative ">
                 <button
                   className="text-grey bg-white justify-center w-9 h-9 grid place-items-center rounded-full hover:bg-gray-200 text-lg leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-200 active:text-gray-800 transition duration-150 ease-in-out"
                   onClick={toggleDropdown}
@@ -211,7 +211,7 @@ const AdminPrediction = () => {
                 </button>
                 {isOpen && (
                   <div
-                    className="absolute bg-white right-10 mt-2 shadow-md z-50"
+                    className="absolute z-[999] bg-white right-10 mt-2 shadow-md"
                     ref={optionsRef}
                   >
                     <div
@@ -403,25 +403,13 @@ const AdminPrediction = () => {
   return (
     <>
       {renderapp && (
-        <div className="container-fluid bg-light ml-5 h-full mb-10 max-h-[500vh]  max-w-fit">
+        <div className="container-fluid bg-light ml-5  mb-10 max-h-[500vh]  max-w-fit">
           <Head>
             <title>Predict Data | Prediction</title>
           </Head>
           <div className="container pt-5  " style={{}}>
             <div className="grid grid-cols-2 text-black">
               <div className="text-xl ">Loan Prediction Data</div>
-              <div className="mr-11">
-                {" "}
-                <button
-                  onClick={handleAddClick}
-                  className="float-right bg-hero text-white rounded-md p-2 flex"
-                >
-                  <span className="pr-1 text-2xl">
-                    <MdAdd />
-                  </span>
-                  Add
-                </button>
-              </div>
             </div>
             <ToastContainer />
             <div className="shadow-lg border bg-white p-3 mb-5 bg-dark  rounded-lg mt-4 mr-10 text-xs">
@@ -519,7 +507,7 @@ const AdminPrediction = () => {
                   </span>
                 </div>
               </div>
-              <div className=" overflow-x-scroll ">
+              <div className=" overflow-x-scroll z-0 ">
                 <table
                   className="mt-3 ps-5 table w-full text-xs  "
                   {...getTableProps()}
@@ -572,7 +560,7 @@ const AdminPrediction = () => {
                           })}
 
                           <td>
-                            <div className="relative">{row.action}</div>
+                            <div className="">{row.action}</div>
                           </td>
                         </tr>
                       );
@@ -607,7 +595,7 @@ const AdminPrediction = () => {
                     <button
                       className={
                         canPreviousPage
-                          ? "bg-hero rounded-full h-auto p-1 mr-2 mt-2"
+                          ? "bg-[#3f4385] rounded-full h-auto p-1 mr-2 mt-2"
                           : "bg-[#888ee4] rounded-full h-auto p-1 mr-2 mt-2"
                       }
                       onClick={() => previousPage()}
@@ -619,7 +607,7 @@ const AdminPrediction = () => {
                   <button
                     className={
                       canPreviousPage
-                        ? "bg-hero border-2 rounded-lg h-auto p-2 mr-2 text-center  text-xs "
+                        ? "bg-[#3f4385] border-2 rounded-lg h-auto p-2 mr-2 text-center  text-xs "
                         : "bg-[#888ee4] border-2 rounded-lg h-auto p-2 mr-2 text-center  text-xs "
                     }
                     onClick={() => previousPage()}
@@ -630,7 +618,7 @@ const AdminPrediction = () => {
                   <button
                     className={
                       canNextPage
-                        ? "bg-hero rounded-lg h-8 p-2 mr-2 text-center mt-0.5 text-xs"
+                        ? "bg-[#3f4385] rounded-lg h-8 p-2 mr-2 text-center mt-0.5 text-xs"
                         : "bg-[#888ee4] rounded-lg h-8 p-2 mr-2 text-center mt-0.5 text-xs"
                     }
                     onClick={() => nextPage()}
@@ -643,7 +631,7 @@ const AdminPrediction = () => {
                       onClick={() => nextPage()}
                       className={
                         canNextPage
-                          ? " bg-hero  rounded-full h-auto p-1 mr-2 mt-2"
+                          ? " bg-[#3f4385]  rounded-full h-auto p-1 mr-2 mt-2"
                           : " bg-[#888ee4] rounded-full h-auto p-1 mr-2 mt-2"
                       }
                     >

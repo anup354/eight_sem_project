@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { useAuth } from '../context/AuthProvider';
 
 
 
@@ -63,7 +64,7 @@ const Sidebar = () => {
 
 
     const router = useRouter();
-
+const auth=useAuth();
     const navsFooter = [
         {
             navType: "clickable",
@@ -84,6 +85,9 @@ const Sidebar = () => {
         },
         {
             navType: "clickable",
+            onClick: () => {
+                auth?.logout();
+            },        
             href: '/login',
             name: 'Logout',
             icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -306,9 +310,9 @@ const Sidebar = () => {
                                                     <Link href="javascript:void(0)" className="block w-full p-2 text-left rounded-md hover:bg-gray-50 active:bg-gray-100 duration-150">
                                                         Status
                                                     </Link>
-                                                    <button className="block w-full p-2 text-left rounded-md hover:bg-gray-50 active:bg-gray-100 duration-150">
+                                                    <div className="block w-full p-2 text-left rounded-md hover:bg-gray-50 active:bg-gray-100 duration-150">
                                                         Logout
-                                                    </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         )}
