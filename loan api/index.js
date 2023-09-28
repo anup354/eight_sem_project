@@ -27,8 +27,13 @@ app.use(express.static(path.resolve("./public/images")));
 const userRoute = require("./routes/userRegistration/authRoute");
 const predictRoute = require("./routes/prediction/predictionRoute");
 
+const bankRoute = require("./routes/Bank/bankRoute");
+const blogRoute = require("./routes/blog/blogroute");
+
+
 
 app.use([
-  userRoute,predictRoute
+  userRoute,predictRoute,bankRoute,blogRoute
 ]);
 
+app.use(express.static(path.resolve('./public/images')))

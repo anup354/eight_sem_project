@@ -23,7 +23,7 @@ const Login = () => {
         console.log(data)
         try {
             setIsWaiting(true)
-            const response = await axios.post(`${auth?.baseURL}/api/admin/login`, {
+            const response = await axios.post(`http://localhost:8080/api/login`, {
                 email: data.login_email,
                 password: data.login_password
             })

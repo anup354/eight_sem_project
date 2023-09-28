@@ -90,9 +90,7 @@ module.exports.login = async (request, response) => {
                 return response.status(400).json({
                     message: "Invalid Email/Password",
                     success: false,
-
                 })
-
             }
         })
     })

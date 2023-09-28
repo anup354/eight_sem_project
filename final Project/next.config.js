@@ -9,7 +9,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    // domains: ['localhost', 'api.devsrvofads.com', 'devsrvofads.com', "cdn.devsrvofads.com", "cdn.adsaro.com"]
+    
+    domains: ['localhost', 'api.devsrvofads.com', 'devsrvofads.com', "cdn.devsrvofads.com", "cdn.adsaro.com"],
     remotePatterns: [
       {
           protocol: 'https',

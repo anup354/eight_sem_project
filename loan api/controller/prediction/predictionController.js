@@ -3,27 +3,27 @@ const db = require('../../constant/db')
 
 module.exports.prediction = async (request, response) => {
     const connection = await db.conn();
-    console.log(request.body.Result)
+    // console.log(request.body.Result)
     const gender = request.body.Gender === "1" ? "Male" : "Female";
     const married = request.body.Married === "1" ? "Yes" : "No";
     const education = request.body.Education === "1" ? "Graduated" : "Ungraduated";
     const self_Employed = request.body.Self_Employed === "1" ? "Yes" : "No";
     const property_Area = request.body.Property_Area === "0" ? "Urban" : request.body.Property_Area === "1" ? "SemiUrban" : "Rural";
     const result = request.body.Result === 1 ? "Yes" : "No";
-    const data=
+    const data =
     {
-       "Gender": gender,
-       "Married":married,
-       "Dependents":request.body.Dependents,
-       "Education":education,
-       "Self_Employed":self_Employed,
-       "ApplicantIncome":request.body.ApplicantIncome,
-       "CoapplicantIncome":request.body.CoapplicantIncome,
-       "LoanAmount":request.body.LoanAmount,
-       "Loan_Amount_Term":request.body.Loan_Amount_Term,
-       "Credit_History":request.body.Credit_History,
-       "Property_Area":property_Area,
-       "Result":result
+        "Gender": gender,
+        "Married": married,
+        "Dependents": request.body.Dependents,
+        "Education": education,
+        "Self_Employed": self_Employed,
+        "ApplicantIncome": request.body.ApplicantIncome,
+        "CoapplicantIncome": request.body.CoapplicantIncome,
+        "LoanAmount": request.body.LoanAmount,
+        "Loan_Amount_Term": request.body.Loan_Amount_Term,
+        "Credit_History": request.body.Credit_History,
+        "Property_Area": property_Area,
+        "Result": result
 
     }
     // request.body;
@@ -39,8 +39,8 @@ module.exports.prediction = async (request, response) => {
     // Property_Area,
     // Dependents,
     // Result
-    const id=request.userId
-    data.userid=id
+    const id = request.userId
+    data.userid = id
     connection.query('insert into prediction SET ?', data, (error, results) => {
         connection.release();
 
@@ -61,7 +61,7 @@ module.exports.prediction = async (request, response) => {
 
 module.exports.getprediction = async (request, response) => {
     const connection = await db.conn();
-    const query=`select * from prediction join registration where registration.registration_id=prediction.userid`;
+    const query = `select * from prediction join registration where registration.registration_id=prediction.userid`;
     connection.query(query, (error, results) => {
         connection.release();
 
@@ -75,7 +75,7 @@ module.exports.getprediction = async (request, response) => {
             return response.status(200).json({
                 message: "success",
                 success: true,
-                data:results
+                data: results
             })
         }
     });
@@ -83,8 +83,8 @@ module.exports.getprediction = async (request, response) => {
 module.exports.getbyidprediction = async (request, response) => {
     const connection = await db.conn();
     const id = request.params.id;
-console.log(id)
-    const query=`select * from prediction join registration on registration.registration_id=prediction.userid where prediction.predict_id=${id}`;
+    console.log(id)
+    const query = `select * from prediction join registration on registration.registration_id=prediction.userid where prediction.predict_id=${id}`;
     connection.query(query, (error, results) => {
         connection.release();
 
@@ -98,7 +98,7 @@ console.log(id)
             return response.status(200).json({
                 message: "success",
                 success: true,
-                data:results[0]
+                data: results[0]
             })
         }
     });
@@ -110,7 +110,7 @@ module.exports.deletePrediction = async (request, response) => {
     const connection = await db.conn();
 
     const id = request.params.id;
-   console.log(id)
+    console.log(id)
     const query = `delete from prediction where predict_id=${id}`
     connection.query(query, async (error, result) => {
         connection.release();
