@@ -41,7 +41,6 @@ const Logins = () => {
   const [password, setPassword] = useState({ message: "", success: "" });
   const auth = useAuth();
 
-
   const onSubmitForm: SubmitHandler<LoginValues> = async (data) => {
     const loginForm = {
       email: data.email,
@@ -49,27 +48,28 @@ const Logins = () => {
     };
     try {
       const response = await axios.post(
-        `${auth?.baseURL}/api/login`,
+        `http://localhost:8080/api/login`,
         loginForm
       );
+      
       if (response?.status === 200) {
         console.log(response);
-        auth?.login(response?.data?.token,response?.data?.role,response?.data?.firstname,response?.data?.lastname);
+        auth?.login(
+          response?.data?.token,
+          response?.data?.role,
+          response?.data?.firstname,
+          response?.data?.lastname
+        );
 
         toast.success("Login Successfull", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        if(!response?.data?.role)
-        {
-
+        if (!response?.data?.role) {
           router.push("/");
         }
-        if(response?.data?.role==="ADMIN")
-        {
-
+        if (response?.data?.role === "ADMIN") {
           router.push("/admin/dashboard");
         }
-
 
         // if (response?.data?.setup?.is_email_verify === 1) {
         //   auth?.login(
