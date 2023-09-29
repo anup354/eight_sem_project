@@ -48,10 +48,15 @@ const Logins = () => {
       password: data.password,
     };
     try {
+      // const response = await axios.post(
+      //   `${auth?.baseURL}/api/login`,
+      //   loginForm
+      // );
       const response = await axios.post(
-        `${auth?.baseURL}/api/login`,
+        `http://localhost:8080/api/login`,
         loginForm
       );
+
       if (response?.status === 200) {
         console.log(response);
         auth?.login(response?.data?.token,response?.data?.role,response?.data?.firstname,response?.data?.lastname);
