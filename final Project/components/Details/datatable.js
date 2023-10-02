@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import React, { useCallback, useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component';
 
 const customStyles = {
@@ -19,28 +20,30 @@ const customStyles = {
 const columns = [
     {
         name: 'Bank',
-        selector: 'bank',
+        selector: 'bank_name',
         sortable: true,
     },
     {
         name: 'Name',
-        selector: 'name',
+        selector: 'loan_name',
         sortable: true,
     },
     {
         name: 'Interest Rate',
-        selector: 'interestRate',
+        selector: 'interest_rate',
         sortable: true,
     },
     {
         name: 'Processing fee',
-        selector: 'fee',
+        selector: 'processing_fee',
         sortable: true,
+        cell: (row) => (row.processing_fee !== null && row.processing_fee !== 0 ? row.processing_fee : '-'),
     },
     {
         name: 'Tenure',
         selector: 'tenure',
         sortable: true,
+        cell: (row) => (row.tenure !== null && row.tenure !== 0 ? row.tenure : '-'),
     },
     // Add more columns as needed
 ];
@@ -164,34 +167,42 @@ const data = [
 const Table = () => {
     const [isClient, setIsClient] = useState(false);
     const [sortedData, setSortedData] = useState(data);
-    const [sortField, setSortField] = useState('bank');
+    const [sortField, setSortField] = useState('bank_name');
     const [sortDirection, setSortDirection] = useState('asc');
     const [searchText, setSearchText] = useState('');
+    const [bankData, setBankData] = useState();
+    const [renderapp, setRenderapp] = useState(false);
+
     useEffect(() => {
         setIsClient(true);
     }, []);
 
     useEffect(() => {
-        // Sort the data based on the selected field and direction
-        const sorted = [...data].sort((a, b) => {
-            if (sortField === 'interestRate') {
-                // Special handling for sorting by Interest Rate
-                const rateA = parseInterestRate(a.interestRate);
-                const rateB = parseInterestRate(b.interestRate);
+        // Ensure that bankData is not undefined and is an array
+        if (bankData && Array.isArray(bankData) && bankData.length > 0) {
+            // Sort the data based on the selected field and direction
+            const sorted = [...bankData].sort((a, b) => {
+                console.log("aaa", sortField);
+                if (sortField === 'interest_rate') {
+                    // Special handling for sorting by Interest Rate
+                    const rateA = parseInterestRate(a.interest_rate);
+                    const rateB = parseInterestRate(b.interest_rate);
 
-                if (sortDirection === 'asc') {
-                    return rateA - rateB;
+                    if (sortDirection === 'asc') {
+                        return rateA - rateB;
+                    } else {
+                        return rateB - rateA;
+                    }
                 } else {
-                    return rateB - rateA;
+                    // Default sorting based on other fields
+                    return a[sortField].localeCompare(b[sortField]);
                 }
-            } else {
-                // Default sorting based on other fields
-                return a[sortField].localeCompare(b[sortField]);
-            }
-        });
+            });
 
-        setSortedData(sorted);
+            setSortedData(sorted);
+        }
     }, [sortField, sortDirection]);
+
 
     const parseInterestRate = (rate) => {
         // Custom function to parse interest rate values, adjust as needed
@@ -201,7 +212,9 @@ const Table = () => {
 
     const handleSortChange = (event) => {
         const { name, value } = event.target;
+        
         if (name === 'sortField') {
+
             // Update the sort field based on the selected option
             setSortField(value);
         } else if (name === 'sortDirection') {
@@ -210,16 +223,38 @@ const Table = () => {
         }
     };
     useEffect(() => {
-        // Filter data based on search text
-        const filteredData = data.filter((item) =>
-            item.bank.toLowerCase().includes(searchText.toLowerCase()) ||
-            item.name.toLowerCase().includes(searchText.toLowerCase())
-        );
 
-        setSortedData(filteredData);
+        const loadBlog = async () => {
+            try {
+
+                const response = await axios.get(
+                    `http://localhost:8080/api/bank`
+                );
+                console.log("aad", response.data.data)
+
+                setBankData(response.data.data);
+
+                setRenderapp(true);
+                // Filter data based on search text
+                const filteredData = response.data.data.filter((item) =>
+                    item.bank_name.toLowerCase().includes(searchText.toLowerCase()) ||
+                    item.loan_name.toLowerCase().includes(searchText.toLowerCase())
+                );
+                console.log("filterData", filteredData)
+
+                setSortedData(filteredData);
+
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        loadBlog()
+
+
     }, [searchText]);
     const handleSearchChange = (event) => {
         // Update the search text when the user types in the search input
+        console.log("seaech", event.target.value)
         setSearchText(event.target.value);
     };
     if (!isClient) {
@@ -228,62 +263,83 @@ const Table = () => {
     }
 
     return (
-        <div className="ml-24 mr-24 mt-4">
-            <div className="m-2">
-                <label htmlFor="sortField" className="mr-2">Sort by:</label>
-                <select
-                    className="bg-purple-200 mr-4"
-                    id="sortField"
-                    name="sortField"
-                    value={sortField}
-                    onChange={handleSortChange}
-                >
-                    <option value="bank">Bank</option>
-                    <option value="name">Name</option>
-                    <option value="interestRate">Interest Rate</option>
-                    <option value="fee">Processing fee</option>
-                    <option value="tenure">Tenure</option>
-                </select>
-                <label htmlFor="sortDirection mr-4">Direction:</label>
-                <select
-                    className="bg-purple-200 mr-4 ml-2" // Add margin-left to create space
-                    id="sortDirection"
-                    name="sortDirection"
-                    value={sortDirection}
-                    onChange={handleSortChange}
-                >
-                    <option value="asc">Low to High</option>
-                    <option value="desc">High to Low</option>
-                </select>
-                
-                <label htmlFor="searchText" className="mr-2">Search:</label>
-                <input
-                    type="text"
-                    id="searchText"
-                    name="searchText"
-                    value={searchText}
-                    onChange={handleSearchChange}
-                    className="search-input bg-purple-200"
-                />
-                
-            </div>
-           
+        <>
+            {renderapp && (
+                <div className="">
 
-            <DataTable
-                columns={columns}
-                data={sortedData}
-                customStyles={customStyles}
-                pagination
-                paginationPerPage={5}
-                paginationRowsPerPageOptions={[5, 10, 15, 20]}
-                paginationComponentOptions={{
-                    rowsPerPageText: 'Rows per page:',
-                }}
-                defaultSortField="bank"
-                defaultSortAsc={true}
-                striped={true}
-            />
-        </div>
+                    <div className='flex flex-wrap  justify-between py-4'>
+                        <div className='flex flex-wrap'>
+
+                            <div className='flex flex-wrap mr-5'>
+                                <label htmlFor="sortField" className="pt-1">Sort by: &nbsp; </label>
+                                <select
+                                    className="border-purple-500 py-2 px-4  border  rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
+                                    id="sortField"
+                                    name="sortField"
+                                    value={sortField}
+                                    onChange={handleSortChange}
+                                >
+                                    <option value="bank_name">Bank Name</option>
+                                    <option value="loan_name">Loan Name</option>
+                                    <option value="interest_rate">Interest Rate</option>
+                                    <option value="processing_fee">Processing fee</option>
+                                    <option value="tenure">Tenure</option>
+                                </select>
+                            </div>
+
+                            <div className='flex flex-wrap  max-sm:mt-4'>
+                                <div className='flex flex-wrap'>
+                                    <label htmlFor="sortDirection" className='pt-1'>Direction :&nbsp;</label>
+                                    <select
+                                        className="border-purple-500 py-2 px-4  border  rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none" // Add margin-left to create space
+                                        id="sortDirection"
+                                        name="sortDirection"
+                                        value={sortDirection}
+                                        onChange={handleSortChange}
+                                    >
+                                        <option value="asc">Low to High</option>
+                                        <option value="desc">High to Low</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div className='flex flex-wrap items-center max-md:mt-4'>
+                            <label htmlFor="searchText" className="mr-2">Search:</label>
+                            <input
+                                type="text"
+                                id="searchText"
+                                name="searchText"
+                                value={searchText}
+                                onChange={handleSearchChange}
+                                className="search-input border-purple-500 py-2 px-4  border nr-3 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none"
+                            />
+
+                        </div>
+
+
+                    </div>
+
+
+                    <DataTable
+                        columns={columns}
+                        data={sortedData}
+                        customStyles={customStyles}
+                        pagination
+                        paginationPerPage={5}
+                        paginationRowsPerPageOptions={[5, 10, 15, 20]}
+                        paginationComponentOptions={{
+                            rowsPerPageText: 'Rows per page:',
+                        }}
+                        defaultSortField="bank"
+                        defaultSortAsc={true}
+                        striped={true}
+                    />
+                </div>
+            )}
+        </>
     );
 };
 

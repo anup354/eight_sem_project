@@ -262,11 +262,11 @@ const index = () => {
     Header: "columns",
     data: blog,
   };
-  const loadHerosection = useCallback(async () => {
+  const loadBlog = useCallback(async () => {
     try {
-      const headers = {
-        Authorization: `Bearer ${auth?.token}`,
-      };
+      // const headers = {
+      //   Authorization: `Bearer ${auth?.token}`,
+      // };
       const response = await axios.get(
         `http://localhost:8080/api/blog`
         // `${BaseUrl}api/v1/herosection`
@@ -307,7 +307,7 @@ const index = () => {
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/blog/${id}`);
-      loadHerosection();
+      loadBlog();
       toast.success("Successfully deleted");
     } catch (error) {
       console.error(error);
@@ -320,8 +320,8 @@ const index = () => {
   const router = useRouter();
 
   useEffect(() => {
-    loadHerosection();
-  }, [loadHerosection]);
+    loadBlog();
+  }, [loadBlog]);
 
   const data = useMemo(() => {
     return blog.filter((blog) =>

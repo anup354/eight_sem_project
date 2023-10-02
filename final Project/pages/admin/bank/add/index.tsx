@@ -10,6 +10,8 @@ type FormValues = {
   shortform: String;
   tenure: String;
   interest_rate: String;
+  loan_name: String;
+  processing_fee: String;
 };
 const index = () => {
   const router = useRouter();
@@ -41,6 +43,8 @@ const index = () => {
       shortform: data.shortform,
       interest_rate: data.interest_rate,
       tenure: data.tenure,
+      loan_name: data.loan_name,
+      processing_fee: data.processing_fee,
     };
     console.log("adazdz", mydata);
 
@@ -110,6 +114,42 @@ const index = () => {
         </div>
 
         <div>
+          <label className="font-medium">Loan Name</label>
+          <input
+            {...register("loan_name", {
+              required: true,
+            })}
+            // defaultValue={Defaultvalue}
+            type="text"
+            placeholder="Loan Name "
+            className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+          />
+          {errors?.loan_name?.type === "required" && (
+            <p className="text-red-600 font-main text-sm mt-1">
+              This field is required
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="font-medium">Processing Fee</label>
+          <input
+            {...register("processing_fee", {
+              // required: true,
+            })}
+            // defaultValue={Defaultvalue}
+            type="text"
+            placeholder="Processing Fee "
+            className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+          />
+          {errors?.processing_fee?.type === "required" && (
+            <p className="text-red-600 font-main text-sm mt-1">
+              This field is required
+            </p>
+          )}
+        </div>
+
+        <div>
           <label className="font-medium">Bank Interest Rate</label>
           <input
             {...register("interest_rate", {
@@ -144,7 +184,6 @@ const index = () => {
             </p>
           )}
         </div>
-
 
         <div className="flex gap-5 mt-5 items-center ">
           <button

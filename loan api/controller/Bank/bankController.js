@@ -13,6 +13,8 @@ module.exports.addBank = async (request, response) => {
         const data =
         {
             bank_name: request.body.bank_name,
+            loan_name: request.body.loan_name,
+            processing_fee: request.body.processing_fee,
             shortform: request.body.shortform,
             interest_rate: request.body.interest_rate,
             tenure: request.body.tenure,

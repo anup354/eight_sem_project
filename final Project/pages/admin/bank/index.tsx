@@ -117,6 +117,14 @@ const index = () => {
         accessor: "bank_name",
       },
       {
+        Header: "Loan Name",
+        accessor: "loan_name",
+      },
+      {
+        Header: "Processing Fee",
+        accessor: "processing_fee",
+      },
+      {
         Header: "Interest Rate",
         accessor: "interest_rate",
       },
@@ -240,11 +248,11 @@ const index = () => {
     Header: "columns",
     data: bank,
   };
-  const loadHerosection = useCallback(async () => {
+  const loadBankData = useCallback(async () => {
     try {
-      const headers = {
-        Authorization: `Bearer ${auth?.token}`,
-      };
+      // const headers = {
+      //   Authorization: `Bearer ${auth?.token}`,
+      // };
       const response = await axios.get(
         `http://localhost:8080/api/bank`
         // `${BaseUrl}api/v1/herosection`
@@ -285,7 +293,7 @@ const index = () => {
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/bank/${id}`);
-      loadHerosection();
+      loadBankData();
       toast.success("Successfully deleted");
     } catch (error) {
       console.error(error);
@@ -298,8 +306,8 @@ const index = () => {
   const router = useRouter();
 
   useEffect(() => {
-    loadHerosection();
-  }, [loadHerosection]);
+    loadBankData();
+  }, [loadBankData]);
 
   const data = useMemo(() => {
     return bank.filter((bank) =>

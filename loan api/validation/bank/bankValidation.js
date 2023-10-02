@@ -6,6 +6,8 @@ module.exports.registerBank = async (request) => {
     const validateBank = await new Validator(request.body, {
         bank_name: 'required',
         shortform: 'required',
+        loan_name: 'required',
+        // processing_fee: 'required',
     });
     // Custom validation
     validateBank.addPostRule(async (provider) => {
@@ -37,11 +39,12 @@ function uniquebank(bank_name, connection) {
 }
 
 //category
-module.exports.addBlog= async (request) => {
+module.exports.addBlog = async (request) => {
     const connection = await db.conn();
     const validateCategory = await new Validator(request.body, {
         blog_name: 'required',
         description: 'required',
+        
     });
     // Custom validation
     // validateCategory.addPostRule(async (provider) => {

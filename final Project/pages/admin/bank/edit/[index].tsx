@@ -11,6 +11,8 @@ type FormValues = {
   shortform: String;
   tenure: String;
   interest_rate: String;
+  loan_name: String;
+  processing_fee: String;
 };
 
 const index = () => {
@@ -60,6 +62,8 @@ const index = () => {
       shortform: data.shortform,
       interest_rate: data.interest_rate,
       tenure: data.tenure,
+      loan_name: data.loan_name,
+      processing_fee: data.processing_fee,
     };
     try {
       const result = await axios.put(
@@ -142,13 +146,50 @@ const index = () => {
             </div>
 
             <div>
+              <label className="font-medium">Loan Name</label>
+              <input
+                {...register("loan_name", {
+                  required: true,
+                })}
+                defaultValue={oldData.loan_name}
+
+                type="text"
+                placeholder="Loan Name "
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+              />
+              {errors?.loan_name?.type === "required" && (
+                <p className="text-red-600 font-main text-sm mt-1">
+                  This field is required
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="font-medium">Processing Fee</label>
+              <input
+                {...register("processing_fee", {
+                  required: true,
+                })}
+                defaultValue={oldData.processing_fee}
+
+                type="text"
+                placeholder="Processing Fee "
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+              />
+              {errors?.processing_fee?.type === "required" && (
+                <p className="text-red-600 font-main text-sm mt-1">
+                  This field is required
+                </p>
+              )}
+            </div>
+
+            <div>
               <label className="font-medium">Bank Interest Rate</label>
               <input
                 {...register("interest_rate", {
                   required: true,
                 })}
                 defaultValue={oldData?.interest_rate}
-
                 // defaultValue={Defaultvalue}
                 type="text"
                 placeholder="Bank Interest Rate"
@@ -168,7 +209,6 @@ const index = () => {
                   required: true,
                 })}
                 defaultValue={oldData?.tenure}
-
                 // defaultValue={Defaultvalue}
                 type="text"
                 placeholder="Bank Interest Rate"
