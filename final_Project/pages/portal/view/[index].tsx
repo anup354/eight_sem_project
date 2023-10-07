@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import Link from "next/link";
+import Portallayout from "../../../components/portalLayout/portallayout";
 
 const View = () => {
   const router = useRouter();
@@ -48,12 +49,14 @@ const View = () => {
   }, [router.isReady, router.query.index]);
 
   return (
+    <Portallayout>
+
     <>
       {renderApp && (
         <div className="">
-          <Link href="/admin/prediction">
+          <Link href="/portal/predictresult">
 
-          <button className=" ml-4 bg-purple-800 p-2 text-white rounded-md mb-5">
+          <button className=" ml-4 mt-3 bg-purple-800 p-2 text-white rounded-md mb-5">
             Back
           </button>
           </Link>
@@ -107,8 +110,9 @@ const View = () => {
         </div>
       )}
     </>
+    </Portallayout>
   );
 };
 
-View.requiredAuth = true;
+
 export default View;

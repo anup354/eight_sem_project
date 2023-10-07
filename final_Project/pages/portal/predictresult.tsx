@@ -55,7 +55,7 @@ const Predictresult = () => {
       const ratio = canvasWidth / canvasHeight;
       let pageData = canvas.toDataURL("image/png", 1.0);
       pdf.addImage(pageData, "PNG", 0, 0, pageWidth, pageWidth / ratio);
-      pdf.save("example.pdf");
+      pdf.save("predictresult.pdf");
     });
   };
 
@@ -86,7 +86,7 @@ const Predictresult = () => {
   }
   const handleEditClick = async (e, slug) => {
     e.preventDefault();
-    router.push(`/admin/view/${slug}`);
+    router.push(`/portal/view/${slug}`);
     console.log("hello id", slug);
   };
 

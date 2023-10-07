@@ -10,13 +10,13 @@ module.exports.registerBank = async (request) => {
         // processing_fee: 'required',
     });
     // Custom validation
-    validateBank.addPostRule(async (provider) => {
-        const checkBank = await uniquebank(provider.inputs.bank_name, connection)
-        if (checkBank) {
-            provider.error('Bank', 'custom', "Bank name already exist");
-        }
+    // validateBank.addPostRule(async (provider) => {
+    //     const checkBank = await uniquebank(provider.inputs.bank_name, connection)
+    //     if (checkBank) {
+    //         provider.error('Bank', 'custom', "Bank name already exist");
+    //     }
 
-    });
+    // });
     return validateBank;
 };
 //check unique bank

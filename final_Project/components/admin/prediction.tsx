@@ -53,7 +53,7 @@ const AdminPrediction = () => {
       const ratio = canvasWidth / canvasHeight;
       let pageData = canvas.toDataURL("image/png", 1.0);
       pdf.addImage(pageData, "PNG", 0, 0, pageWidth, pageWidth / ratio);
-      pdf.save("example.pdf");
+      pdf.save("predictiondata.pdf");
     });
   };
 

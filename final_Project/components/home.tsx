@@ -1,10 +1,14 @@
-import React from "react";
 import house from "../public/images/house.jpg";
 import Image from "next/image";
 import Head from "next/head";
+import React, { useState } from 'react';
 
 const Home = () => {
+  const [isLearnMoreOpen, setLearnMoreOpen] = useState(false);
 
+  const toggleLearnMore = () => {
+    setLearnMoreOpen(!isLearnMoreOpen);
+  };
   return (
     <div>
       <Head>
@@ -16,7 +20,7 @@ const Home = () => {
             <div className="flex-1 sm:hidden lg:block">
               {/* <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" className="md:max-w-lg sm:rounded-lg" alt="" /> */}
               <Image
-                src={house}
+                src='https://imgnew.outlookindia.com/uploadimage/library/16_9/16_9_2/IMAGE_1651483122.webp'
                 width={450}
                 height={450}
                 className="w-full"
@@ -24,36 +28,43 @@ const Home = () => {
               />
             </div>
             <div className="max-w-xl px-4 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-              <h3 className="text-indigo-600 font-semibold">
-                Loan Approval Prediction System{" "}
-              </h3>
-              {/* <p className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                            Build your SaaS solution with help from our experts
-                        </p> */}
-              <p className="mt-3 text-gray-600">
-                Loan Approval Prediction System, Use this system to predict
-                whether your loan will be Approved or not.Give your feedback for
-                the if you encounter any error.{" "}
-              </p>
-              <a
-                href="javascript:void(0)"
-                className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
-              >
-                Learn more
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-            </div>
+  <h3 className="text-indigo-600 font-semibold">
+    Loan Approval Prediction System{" "}
+  </h3>
+  <p className="mt-3 text-gray-600">
+    Loan Approval Prediction System, Use this system to predict whether your loan will be Approved or not. Give your feedback for the if you encounter any error.{" "}
+  </p>
+  <a
+    href="javascript:void(0)"
+    className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
+    onClick={toggleLearnMore}
+  >
+    Learn more
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      className={`w-5 h-5 ${isLearnMoreOpen ? 'rotate-180' : ''}`}
+    >
+      <path
+        fillRule="evenodd"
+        d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </a>
+  {isLearnMoreOpen && (
+    <div className="mt-3 text-gray-600">
+     A loan prediction system is important because it helps financial institutions assess and minimize risks, make informed lending decisions, and allocate resources efficiently, ultimately promoting financial stability.
+    </div>
+  )}
+  {isLearnMoreOpen && (
+    <div className="mt-3 text-gray-600">
+     Loan prediction systems can be used by banks, credit unions, and financial institutions to evaluate loan applicants' creditworthiness and make informed lending decisions.
+    </div>
+  )}
+</div>
+
           </div>
         </div>
       </section>

@@ -60,7 +60,7 @@ const Bankcard = (props) => {
           <p className="text-gray-500">{faqsList.a}</p>
         </div>
         <button className=" font-medium text-md text-white bg-primary py-2 px-1 rounded-md hover:bg-white hover:text-primary border hover:border-primary">
-          View more
+          return back
         </button>
       </div>
     </div>

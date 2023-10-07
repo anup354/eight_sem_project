@@ -15,9 +15,13 @@ import RequireAuth from "../components/AuthGuard/RequireAuth";
 import Layout from "../components/layouts/layout";
 export type NextApplicationPage<P = any, IP = P> = NextPage<P, IP> & {
   requiredAuth?: boolean;
+  noHeader?: boolean; // Add this property to indicate no header
+  noFooter?: boolean; // Add this property to indicate no footer
 };
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
+  const shouldDisplayHeader = !Component.noHeader;
+  const shouldDisplayFooter = !Component.noFooter;
 
   return (
     <>
@@ -29,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <RequireAuth>
               <div className="max-md:pt-0 max-lg:pt-0 max-sm:pt-0 max-w-screen-3xl mx-auto">
                 <Layout>
-                  <Component {...pageProps} className="max-lg:mt-5  " />
+                  <Component {...pageProps} className="max-lg:mt-5" />
                 </Layout>
               </div>
             </RequireAuth>
@@ -43,11 +47,6 @@ export default function App({ Component, pageProps }: AppProps) {
             <Footer />
           </>
         )}
-        {/* <div className="max-md:pt-0 max-lg:pt-0 max-sm:pt-0 max-w-screen-3xl mx-auto">
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
-        </div> */}
       </AuthProvider>
     </>
   );

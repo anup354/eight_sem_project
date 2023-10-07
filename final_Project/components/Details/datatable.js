@@ -37,127 +37,127 @@ const columns = [
         name: 'Processing fee',
         selector: 'processing_fee',
         sortable: true,
-        cell: (row) => (row.processing_fee !== null && row.processing_fee !== 0 ? row.processing_fee : '-'),
+        cell: (row) => (row.processing_fee != null && row.processing_fee != 0 ? row.processing_fee : '-'),
     },
     {
         name: 'Tenure',
         selector: 'tenure',
         sortable: true,
-        cell: (row) => (row.tenure !== null && row.tenure !== 0 ? row.tenure : '-'),
+        cell: (row) => (row.tenure != null && row.tenure != 0 ? row.tenure : '-'),
     },
     // Add more columns as needed
 ];
 
 const data = [
     {
-        "bank": "Laxmi Sunrise",
-        "interestRate": "12.99% -14.99%",
-        "name": "Personal-Loan Fixed Rate",
+        "bank_name": "Laxmi Sunrise",
+        "interest_rate": "12.99% -14.99%",
+        "loan_name": "Personal-Loan Fixed Rate",
         "tenure": "15 years",
-        "fee": "-"
+        
     },
     {
-        "bank": "Nepal Bank Nepal Bank Ltd.",
-        "interestRate": "13.05% -14.05%",
-        "name": "Personal Term loan",
+        "bank_name": "Nepal Bank Nepal Bank Ltd.",
+        "interest_rate": "13.05% -14.05%",
+        "loan_name": "Personal Term loan",
         "tenure": "10 years",
         "fee": "-"
     },
     {
-        "bank": "Nepal SBI Nepal SBI Bank",
-        "interestRate": "15.50%-15.50%",
-        "name": "Personal TL-Fixed",
+        "bank_name": "Nepal SBI Nepal SBI Bank",
+        "interest_rate": "15.50%-15.50%",
+        "loan_name": "Personal TL-Fixed",
         "tenure": "10 years",
-        "fee": "-"
+        
     },
     {
-        "bank": "RBB Rastriya Baya Bank",
-        "interestRate": "13.50% -13.50%",
-        "name": "Personal-Loan Fixed Rate",
+        "bank_name": "RBB Rastriya Baya Bank",
+        "interest_rate": "13.50% -13.50%",
+        "loan_name": "Personal-Loan Fixed Rate",
         "tenure": "10 years",
         "fee": "-",
     },
     {
-        "bank": "NIC Asia",
-        "interestRate": "10.76% -16.76%",
-        "name": "Personal Loan",
+        "bank_name": "NIC Asia",
+        "interest_rate": "10.76% -16.76%",
+        "loan_name": "Personal Loan",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "TOCASIA Bank",
-        "interestRate": "Base Date Update",
-        "name": "Personal Term loan",
+        "bank_name": "TOCASIA Bank",
+        "interest_rate": "Base Date Update",
+        "loan_name": "Personal Term loan",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "Nepal Bank Nepal Bank Ltd.",
-        "interestRate": "12.55% 13.55%",
-        "name": "Personal Term loan",
+        "bank_name": "Nepal Bank Nepal Bank Ltd.",
+        "interest_rate": "12.55% 13.55%",
+        "loan_name": "Personal Term loan",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "NIC ASIA Bank",
-        "interestRate": "14.99% -14.99%",
-        "name": "Personal Loan Fixer",
+        "bank_name": "NIC ASIA Bank",
+        "interest_rate": "14.99% -14.99%",
+        "loan_name": "Personal Loan Fixer",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "Nepal Bank Nepal Bank Ltd",
-        "interestRate": "13.50% - 14.50%",
-        "name": "Personal Term Loan-Fixed Rate",
+        "bank_name": "Nepal Bank Nepal Bank Ltd",
+        "interest_rate": "13.50% - 14.50%",
+        "loan_name": "Personal Term Loan-Fixed Rate",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "Nepal SBI Nepal 581 Bank",
-        "interestRate": "14.50% -14.50%",
-        "name": "Personal TL-Fixed",
+        "bank_name": "Nepal SBI Nepal 581 Bank",
+        "interest_rate": "14.50% -14.50%",
+        "loan_name": "Personal TL-Fixed",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "SCB Standard Chartered task",
-        "interestRate": "13.25% -13,25%",
-        "name": "Personal Loan Fixed Rate",
+        "bank_name": "SCB Standard Chartered task",
+        "interest_rate": "13.25% -13,25%",
+        "loan_name": "Personal Loan Fixed Rate",
         "tenure": "5 years",
         "fee": "-"
     },
     {
-        "bank": "Nepal SBI Nepal SBI Bank",
-        "interestRate": "13.50% -13.50%",
-        "name": "Personal TL-Fixed",
+        "bank_name": "Nepal SBI Nepal SBI Bank",
+        "interest_rate": "13.50% -13.50%",
+        "loan_name": "Personal TL-Fixed",
         "tenure": "3 years",
         "fee": "-"
     },
     {
-        "bank": "Krishi Bikas Agriculture Dev. Bank",
-        "interestRate": "10.34% -15.34%",
-        "name": "Overdraft-individual",
+        "bank_name": "Krishi Bikas Agriculture Dev. Bank",
+        "interest_rate": "10.34% -15.34%",
+        "loan_name": "Overdraft-individual",
         "tenure": "N/A",
         "fee": "-"
     },
     {
-        "bank": "RBB Rastriya Baya Bank",
-        "interestRate": "11.77% -12.02%",
-        "name": "Personal Loan",
+        "bank_name": "RBB Rastriya Baya Bank",
+        "interest_rate": "11.77% -12.02%",
+        "loan_name": "Personal Loan",
         "tenure": "N/A",
         "fee": "-"
     },
     {
-        "bank": "Sanima Bank",
-        "interestRate": "10.06% -15.06%",
-        "name": "Personal Overdraft/Loan",
+        "bank_name": "Sanima Bank",
+        "interest_rate": "10.06% -15.06%",
+        "loan_name": "Personal Overdraft/Loan",
         "tenure": "N/A",
         "fee": "-"
     },
     {
-        "bank": "Prabhu Bank",
-        "interestRate": "10.18%-15.18%",
-        "name": "Other Personal Loan",
+        "bank_name": "Prabhu Bank",
+        "interest_rate": "10.18%-15.18%",
+        "loan_name": "Other Personal Loan",
         "tenure": "N/A",
         "fee": "-"
     },

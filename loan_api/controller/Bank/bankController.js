@@ -14,10 +14,10 @@ module.exports.addBank = async (request, response) => {
         {
             bank_name: request.body.bank_name,
             loan_name: request.body.loan_name,
-            processing_fee: request.body.processing_fee,
+            processing_fee: request.body.processing_fee ? request.body.processing_fee : "0",
             shortform: request.body.shortform,
             interest_rate: request.body.interest_rate,
-            tenure: request.body.tenure,
+            tenure: request.body.tenure?request.body.tenure:"0",
         }
 
         connection.query('insert into bank SET ?', data, (error, results) => {
