@@ -2,6 +2,7 @@ const validUser = require('../../validation/userRegistration/authValidation');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require("dotenv").config()
+const { format } = require('date-fns');
 
 const db = require('../../constant/db')
 // api for register user
@@ -97,10 +98,16 @@ module.exports.login = async (request, response) => {
 }
 
 // feedback 
-module.exports.register = async (request, response) => {
+module.exports.addmessage = async (request, response) => {
     const connection = await db.conn();
+    const id = request.userId
 
-    const data = request.body
+    const data =
+    {
+        description: request.body.description,
+        user_id: id,
+        date: format(new Date(), 'yyyy-MM-dd')
+    }
 
     connection.query('insert into feedback SET ?', data, (error, results) => {
         connection.release();

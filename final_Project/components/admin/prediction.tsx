@@ -40,7 +40,7 @@ const AdminPrediction = () => {
   const [token, setToken] = useState("");
   const [edit, setEdit] = useState("");
   const dropdownRef = useRef(null);
-  
+
   const generatePDF = () => {
     const input = document.getElementById("pdf-content");
 
@@ -117,7 +117,6 @@ const AdminPrediction = () => {
       {
         Header: "Name",
         accessor: (row) => `${row.firstName} ${row.lastName}`,
-
       },
       {
         Header: "Education",
@@ -201,6 +200,9 @@ const AdminPrediction = () => {
           };
           return (
             <>
+              <Head>
+                <title>Admin | Prediction</title>
+              </Head>
               <div className="relative ">
                 <button
                   className="text-grey bg-white justify-center w-9 h-9 grid place-items-center rounded-full hover:bg-gray-200 text-lg leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-200 active:text-gray-800 transition duration-150 ease-in-out"
@@ -215,15 +217,15 @@ const AdminPrediction = () => {
                     ref={optionsRef}
                   >
                     <div
-                      onClick={(e) => handleEditClick(e, row.original.predict_id)}
+                      onClick={(e) =>
+                        handleEditClick(e, row.original.predict_id)
+                      }
                       className="flex items-center justify-center px-4 py-2 text-sm  text-green-700 hover:bg-green-200  focus:outline-none focus:bg-green-100 focus:text-gray-900"
                     >
                       <div className="pr-3 pt-0.5">
                         <AiOutlineEdit />
                       </div>
-                      <button className="text-sm mr-3">
-                        View
-                      </button>
+                      <button className="text-sm mr-3">View</button>
                     </div>
                     <button
                       onClick={() =>

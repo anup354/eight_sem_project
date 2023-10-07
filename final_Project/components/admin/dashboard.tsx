@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
+import Head from "next/head";
 
 const AdminDashboard = () => {
   const chartRef = useRef(null);
@@ -80,11 +81,11 @@ const AdminDashboard = () => {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 2,
+              stepSize: 5,
             },
             title: {
               display: true,
-              text: "number of",
+              text: "number of prediction",
             },
           },
         },
@@ -103,6 +104,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="h-[80vh]">
+      <Head>
+        <title>Admin</title>
+      </Head>
       <canvas ref={chartRef} width="15" height="15"></canvas>
     </div>
   );

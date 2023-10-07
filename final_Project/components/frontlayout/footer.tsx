@@ -1,6 +1,9 @@
 import Link from "next/link";
-import React from "react";
-
+import React, { useState } from "react";
+import { useAuth } from "../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 const Footer = () => {
   const footerNavs = [
     {
@@ -21,34 +24,64 @@ const Footer = () => {
       ],
     },
   ];
+  const [description, setDescription] = useState();
+  const auth = useAuth();
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+    if (!auth?.user?.token) {
+      toast.error("Please login to send feedback.");
+    } else {
+      const headers = {
+        Authorization: `Bearer ${auth?.user?.token}`, // Make sure you have a valid token here.
+      };
+      const data = {
+        description: description,
+      };
+      const respose = await axios.post(
+        "http://localhost:8080/api/feedback",
+        data,
+        {
+          headers: headers,
+        }
+      );
 
+      toast.success("Feedback successfully send.");
+      setDescription(null);
+      console.log("aa", respose);
+    }
+  };
   return (
     <div className="border mt-8">
       <footer className="pt-10">
+        <ToastContainer />
+
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="justify-between items-center gap-12 md:flex">
             {/* <Link href="/predict"> */}
-              <div className="flex-1 max-w-lg">
-                <h3 className="text-2xl font-bold">
-                  Get best loan predictor system.
-                </h3>
-              </div>
+            <div className="flex-1 max-w-lg">
+              <h3 className="text-2xl font-bold">
+                Get best loan predictor system.
+              </h3>
+            </div>
             {/* </Link> */}
             <div className="flex-1 mt-6 md:mt-0">
               <form
-                // onSubmit={(e) => e.preventDefault()}
+                onSubmit={handlesubmit}
                 className="flex items-center gap-x-3 md:justify-end"
               >
-                <div >
-                  
+                <div>
                   {/* <input
                     type="email"
                     required
                     placeholder="Enter your email"
                     className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                   /> */}
-                  <textarea className="w-64 h-16 p-2 rounded border border-gray-300 focus:border-blue-500" placeholder="Enter text..." required></textarea>
-
+                  <textarea
+                    className="w-64 h-16 p-2 rounded border border-gray-300 focus:border-blue-500"
+                    placeholder="Enter text..."
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                  ></textarea>
                 </div>
                 <button className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow">
                   Send Feedback
