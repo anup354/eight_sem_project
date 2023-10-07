@@ -95,3 +95,28 @@ module.exports.login = async (request, response) => {
         })
     })
 }
+
+// feedback 
+module.exports.register = async (request, response) => {
+    const connection = await db.conn();
+
+    const data = request.body
+
+    connection.query('insert into feedback SET ?', data, (error, results) => {
+        connection.release();
+
+        if (error) {
+            return response.status(400).json({
+                message: "Some problem occured" + error,
+                success: false,
+            })
+        }
+        else {
+            return response.status(200).json({
+                message: "success",
+                success: true,
+            })
+        }
+    })
+
+};

@@ -46,7 +46,7 @@ const Posts = () => {
           <div className="flex gap-2 flex-wrap w-full mx-auto max-w-screen-2xl ml-5">
             <section className="mt-6 ml-6 w-[70%] ">
               <h2 className="text-4xl font-bold ">Blog</h2>
-              <div className="flex flex-wrap ">
+              <div className="flex gap-4 flex-wrap ">
                 {posts.map((post) => (
                   <div
                     key={post.blog_id}
@@ -82,8 +82,8 @@ const Posts = () => {
                       </div>
                     </div>
                     <div className="p-1">
-                      <Link href={`/posts/${post.id}`} passHref>
-                        <div className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-purple-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      {/* <Link href={`/posts/${post.id}`} passHref> */}
+                        <div onClick={(e) => handleEditClick(e, post.slug)} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-purple-800 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                           Read more
                           <svg
                             className="w-3.5 h-3.5 ml-2"
@@ -101,7 +101,7 @@ const Posts = () => {
                             />
                           </svg>
                         </div>
-                      </Link>
+                      {/* </Link> */}
                     </div>
                   </div>
                 ))}

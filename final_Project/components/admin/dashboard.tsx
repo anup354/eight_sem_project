@@ -84,7 +84,7 @@ const AdminDashboard = () => {
             },
             title: {
               display: true,
-              text: "Count",
+              text: "number of",
             },
           },
         },
