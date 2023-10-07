@@ -265,7 +265,7 @@ const Table = () => {
     return (
         <>
             {renderapp && (
-                <div className="">
+                <div className="mx-10">
 
                     <div className='flex flex-wrap  justify-between py-4'>
                         <div className='flex flex-wrap'>

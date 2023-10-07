@@ -4,9 +4,19 @@ import React, { useEffect, useState } from "react";
 import logo from "../../public/images/money.svg";
 import Head from "next/head";
 import { useAuth } from "../context/AuthProvider";
+import { useRouter } from "next/router";
 const Navbar = () => {
   const [state, setState] = useState(false);
   const auth = useAuth();
+  const router = useRouter();
+  const handledashboard = async (e) => {
+    e.preventDefault();
+    if (auth.user?.role === "ADMIN") {
+      router.push("/admin/dashboard");
+    } else {
+            router.push("/portal/dashboard");
+    }
+  };
 
   return (
     <div className="border sticky top-0 z-[999]">
@@ -14,7 +24,7 @@ const Navbar = () => {
         <title>Prediction | Load Predictor</title>
       </Head>
       <nav className="bg-white border-b w-full md:static md:text-sm md:border-none">
-        <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+        <div className="items-center px-4 max-w-screen-2xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <Link href="/">
               <div className="w-20 h-auto">
@@ -69,22 +79,27 @@ const Navbar = () => {
             }`}
           >
             <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
-             
               <Link href="/Details">
-              <li className="text-gray-600 hover:text-indigo-600">Bank Details</li>
+                <li className="text-gray-600 hover:text-indigo-600">
+                  Bank Details
+                </li>
               </Link>
               <Link href="/Bank">
-                <li className="text-gray-600 hover:text-indigo-600">Loan Advice</li>
+                <li className="text-gray-600 hover:text-indigo-600">
+                  Loan Advice
+                </li>
               </Link>
               <Link href="/Blog">
-              <li className="text-gray-600 hover:text-indigo-600">Loan News</li>
+                <li className="text-gray-600 hover:text-indigo-600">
+                  Loan News
+                </li>
               </Link>
               <li className="text-gray-600 hover:text-indigo-600">Partners</li>
               <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
               <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
                 {auth?.user?.token ? (
                   <>
-                  <li>
+                    <li>
                       <Link href="/predict">
                         <div className="block py-3 px-4 font-medium text-center text-indigo-600 border-indigo-600 hover:text-white hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
                           Predict
@@ -92,7 +107,7 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li>
-                      {/* <Link href="/signup"> */}
+                      <Link href="/">
                       <div
                         onClick={() => auth?.logout()}
                         className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
@@ -100,9 +115,19 @@ const Navbar = () => {
                         Log out
                       </div>
 
+                      </Link>
+                    </li>
+                    <li>
+                      {/* <Link href="/signup"> */}
+                      <div
+                        onClick={handledashboard}
+                        className="block cursor-pointer py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                      >
+                        Dashboard
+                      </div>
+
                       {/* </Link> */}
                     </li>
-                    
                   </>
                 ) : (
                   <>

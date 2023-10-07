@@ -8,6 +8,7 @@ const { upload } = require("../../middleware/fileupload")
 router.post('/api/blog', upload.single('image'), blogController.addBlog)
 router.get('/api/blog', blogController.getBlog)
 router.get('/api/blogbyid/:blog_id', blogController.getByIdBlog)
+router.get('/api/blogbyslug/:slug', blogController.getBySlugBlog)
 router.put('/api/blog/:blog_id', upload.single('image'), blogController.updateBlog)
 router.delete('/api/blog/:blog_id', blogController.deleteBlog)
 

@@ -111,6 +111,33 @@ module.exports.getByIdBlog = async (request, response) => {
 
 };
 
+module.exports.getBySlugBlog = async (request, response) => {
+  const connection = await db.conn();
+  const blog_slug = request.params.slug;
+  const getquery = `select * ,CONCAT('http://localhost:8080/',image) as blog_image from blogs where slug='${blog_slug}'`
+  // ORDER BY category_order ASC
+  connection.query(getquery, (err, result) => {
+    connection.release();
+
+    if (err) {
+      return response.status(400).json({
+        message: "Some problem occured",
+        sucess: false,
+      })
+
+    }
+    else {
+      return response.status(200).json({
+        message: "Sucess",
+        sucess: true,
+        data: result[0]
+
+      })
+    }
+  })
+
+};
+
 module.exports.updateBlog = async (request, response) => {
   const connection = await db.conn();
   const blogid = request.params.blog_id;

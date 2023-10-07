@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/Login.module.css'
 import axios from 'axios';
-import { useAuth } from '../components/context/AuthProvider';
+import { useAuth } from '../../components/context/AuthProvider';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 

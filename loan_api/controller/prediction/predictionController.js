@@ -1,4 +1,5 @@
 const db = require('../../constant/db')
+const { format } = require('date-fns');
 
 
 module.exports.prediction = async (request, response) => {
@@ -23,7 +24,8 @@ module.exports.prediction = async (request, response) => {
         "Loan_Amount_Term": request.body.Loan_Amount_Term,
         "Credit_History": request.body.Credit_History,
         "Property_Area": property_Area,
-        "Result": result
+        "Result": result,
+        "date": format(new Date(), 'yyyy-MM-dd')
 
     }
     // request.body;
@@ -61,7 +63,7 @@ module.exports.prediction = async (request, response) => {
 
 module.exports.getprediction = async (request, response) => {
     const connection = await db.conn();
-    const query = `select * from prediction join registration where registration.registration_id=prediction.userid`;
+    const query = `select * from prediction join registration where registration.registration_id=prediction.userid ORDER BY prediction.predict_id DESC`;
     connection.query(query, (error, results) => {
         connection.release();
 
@@ -99,6 +101,31 @@ module.exports.getbyidprediction = async (request, response) => {
                 message: "success",
                 success: true,
                 data: results[0]
+            })
+        }
+    });
+}
+
+// getbyuserid
+module.exports.getbyiduserid = async (request, response) => {
+    const connection = await db.conn();
+    const id = request.userId
+console.log(id)
+    const query = `select * from prediction join registration on registration.registration_id=prediction.userid where registration.registration_id=${id} ORDER BY prediction.predict_id DESC`;
+    connection.query(query, (error, results) => {
+        connection.release();
+
+        if (error) {
+            return response.status(400).json({
+                message: "Some problem occured" + error,
+                success: false,
+            })
+        }
+        else {
+            return response.status(200).json({
+                message: "success",
+                success: true,
+                data: results
             })
         }
     });
