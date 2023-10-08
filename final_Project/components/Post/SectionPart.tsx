@@ -1,6 +1,7 @@
 import React from 'react'
 
 const SectionPart = ({posts}) => {
+  console.log(posts);
   return (
     <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 mt-10">
           <div className="flex items-center justify-between mb-4 ">
@@ -19,7 +20,7 @@ const SectionPart = ({posts}) => {
                     <div className="flex-shrink-0">
                       <img
                         className="w-8 h-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+                        src= {post.blog_image}
                         alt="Author image"
                       />
                     </div>
@@ -37,7 +38,7 @@ const SectionPart = ({posts}) => {
                      href={`/posts/${post.id}`} 
                       class="text-lg font-bold leading-6 text-gray-900 dark:text-white hover:underline"
                     >
-                      {post.title}
+                      {post.blog_name}
                     </a>
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
                       {post.excerpt}

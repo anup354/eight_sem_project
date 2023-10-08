@@ -122,106 +122,6 @@ const index = () => {
        
       },
       
-
-      // {
-      //   Header: "ADDED DATE",
-      //   accessor: "added_date",
-      //   Cell: ({ value }) => {
-      //     const formattedDate = format(new Date(value), "yyyy-MM-dd");
-      //     return <div>{formattedDate}</div>;
-      //   },
-      // },
-
-    //   {
-    //     Header: "Action",
-    //     accessor: "action",
-    //     Cell: ({ row }) => {
-    //       const [isOpen, setIsOpen] = useState(false);
-
-    //       const toggleDropdown = () => setIsOpen(!isOpen);
-    //       useEffect(() => {
-    //         document.addEventListener("mousedown", handleClickOutsides);
-    //         return () => {
-    //           document.removeEventListener("mousedown", handleClickOutsides);
-    //         };
-    //       }, []);
-
-    //       const handleClickOutsides = (event) => {
-    //         if (
-    //           optionsRef.current &&
-    //           !optionsRef.current.contains(event.target)
-    //         ) {
-    //           setIsOpen(false);
-    //         }
-    //       };
-    //       return (
-    //         <>
-    //           <div className="relative ">
-    //             <button
-    //               className="text-grey bg-white justify-center w-9 h-9 grid place-items-center rounded-full hover:bg-gray-200 text-lg leading-5 font-medium hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-200 active:text-gray-800 transition duration-150 ease-in-out"
-    //               onClick={toggleDropdown}
-    //             >
-    //               <BiDotsVerticalRounded />
-    //               {/* {row.original.action} */}
-    //             </button>
-    //             {isOpen && (
-    //               <div
-    //                 className="absolute z-[999] bg-white right-10 mt-2 shadow-md"
-    //                 ref={optionsRef}
-    //               >
-    //                 <div
-    //                   onClick={(e) => handleEditClick(e, row.original.blog_id)}
-    //                   className="flex items-center justify-center px-4 py-2 text-sm  text-green-700 hover:bg-green-200  focus:outline-none focus:bg-green-100 focus:text-gray-900"
-    //                 >
-    //                   <div className="pr-3 pt-0.5">
-    //                     <AiOutlineEdit />
-    //                   </div>
-    //                   <button className="text-sm mr-3">Edit</button>
-    //                 </div>
-    //                 <button
-    //                   onClick={() =>
-    //                     Swal.fire({
-    //                       title: "Are you sure?",
-    //                       text: "You will be able to revert this!",
-    //                       icon: "warning",
-    //                       showCancelButton: true,
-    //                       confirmButtonColor: "#3085d6",
-    //                       cancelButtonColor: "#d33",
-    //                       confirmButtonText: "Confirm",
-    //                     }).then((result) => {
-    //                       if (result.isConfirmed) {
-    //                         handleDeleteClick(row.original.blog_id);
-    //                       }
-    //                     })
-    //                   }
-    //                   className=""
-    //                 >
-    //                   <div
-    //                     // className="flex pt-2 cursor-pointer pb-1 px-10 hover:bg-red-200 text-red-500"
-    //                     className="flex items-center justify-center px-4 py-2 text-sm  text-red-500 hover:bg-red-200  focus:outline-none focus:bg-red-100 focus:text-red-900"
-    //                   >
-    //                     <div className="pr-3 pt-0.5">
-    //                       <MdOutlineDeleteForever />
-    //                     </div>
-    //                     <button>Delete</button>
-    //                   </div>
-    //                 </button>
-    //                 {/* <div
-    //                           onClick={() => handleDeleteClick(row.original.id)}
-    //                           className="flex pt-2 cursor-pointer pb-1 px-10 hover:bg-red-200 text-red-500"
-    //                         >
-    //                           <div className="pr-3 pt-0.5">
-    //                             <MdOutlineDeleteForever />
-    //                           </div>
-    //                           <button>Delete</button>
-    //                         </div> */}
-    //               </div>
-    //             )}
-    //           </div>
-    //         </>
-    //       );
-    //     },
-    //   },
     ],
     []
   );
@@ -250,7 +150,7 @@ const index = () => {
       setBlog(response.data.data);
       setRenderapp(true);
     } catch (error) {
-      console.log(error);
+      console.error("Error loading blog:", error);
     }
   }, [setColumn, setBlog, token]);
 
@@ -301,7 +201,7 @@ const index = () => {
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearch(value);
-    setFilter("blog_id", value);
+    setFilter("id", value);
   };
   const handlePageChange = (e) => {
     const page = e.target.value ? Number(e.target.value) - 1 : 0;

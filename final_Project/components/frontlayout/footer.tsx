@@ -43,11 +43,13 @@ const Footer = () => {
         {
           headers: headers,
         }
-      );
+      ).catch((error) => {
+        console.error("Axios error:", error);
+      });
 
       toast.success("Feedback successfully send.");
       setDescription(null);
-      console.log("aa", respose);
+      console.log("anna", respose);
     }
   };
   return (
