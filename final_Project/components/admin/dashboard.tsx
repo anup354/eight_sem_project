@@ -3,6 +3,7 @@ import Chart from "chart.js/auto";
 import axios from "axios";
 import Head from "next/head";
 // import "chartjs-plugin-annotation";
+import "chartjs-plugin-annotation";
 
 const AdminDashboard = () => {
   const chartRef = useRef(null);
