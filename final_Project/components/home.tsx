@@ -34,7 +34,7 @@ const Home = () => {
                 /> */}
             </div>
             <div className="max-w-xl px-4 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
-  <h3 className="text-indigo-600 font-semibold">
+  <h3 className="text-purple-600 font-semibold">
     Loan Approval Prediction System{" "}
   </h3>
   <p className="mt-3 text-gray-600">
@@ -42,7 +42,7 @@ const Home = () => {
   </p>
   <a
     href="javascript:void(0)"
-    className="inline-flex gap-x-1 items-center text-indigo-600 hover:text-indigo-500 duration-150 font-medium"
+    className="inline-flex gap-x-1 items-center text-purple-600 hover:text-purple-500 duration-150 font-medium"
     onClick={toggleLearnMore}
   >
     Learn more

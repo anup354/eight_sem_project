@@ -131,6 +131,7 @@ const AdminDashboard = () => {
       <Head>
         <title>Admin</title>
       </Head>
+      <h1>Loan Approval Prediction Chart</h1>
       <canvas ref={chartRef} width="15" height="15"></canvas>
     </div>
   );

@@ -255,7 +255,7 @@ const Modelform = () => {
         <div className=" space-y-10 px-4 lg:px-36 text-gray-600  w-full ">
           <div className="text-center">
             <div className="mt-5 space-y-2">
-              <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
+              <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl text-purple-900">
                 Loan Approval Prediction Form
               </h3>
             </div>
@@ -272,11 +272,7 @@ const Modelform = () => {
 
                   type="text"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                  //   className={
-                  //     errors?.name
-                  //       ? "text-xs border p-3 rounded mt-3 border-red-600 bg-red-50 "
-                  //       : "text-xs border border-gray-300 p-3 rounded mt-3 focus:border-[#7065d4] hover:border-[#7065d4]"
-                  //   }
+                  
                   disabled
                 />
                 {errors?.applicant_name?.type === "required" && (
@@ -353,47 +349,12 @@ const Modelform = () => {
               {/* dependents */}
               <div className="mt-2">
                 <label className="font-medium">Dependent</label>
-                {/* <div className="flex mt-2 text-lg">
-                  <div className="">
-                    <input
-                      type="radio"
-                      name="dependent"
-                      
-                      onChange={(e)=>setShowPop(true)}
-                      defaultChecked
-                    />
-                    <span className="ml-2">Yes</span>
-                  </div>
-                  <div className=" ml-4 text-lg">
-                    <input
-                      type="radio"
-                      name="dependent"
-                      value="0"
-                      onChange={(e) => {
-                        handleRadioButtonChange(e);
-                        setShowPop(false);
-                      }}
-                    />
-                    <span className="ml-2">No</span>
-                  </div>
-                </div> */}
-
-                {/* {showPop && ( */}
-                {/* <div className="mt-3">
-                     <label className="font-medium">Dependent Name</label>
-                    <input
-                       type="text"
-                       required
-                       className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                     />
-                   </div> */}
                 <div className="label-button flex items-center gap-1 pt-2 rounded-lg ">
                   <Controller
                     name="dependent"
                     control={control}
                     render={({ field }) => (
                       <Select
-                        // styles={selectStyle}
                         isClearable
                         className="w-full rounded-lg text-xs shadow-sm"
                         options={depend.map((item) => ({
@@ -401,9 +362,6 @@ const Modelform = () => {
                           label: item.name,
                         }))}
                         {...field}
-                        // value={category}
-
-                        // placeholder="uncategorized"
                         onChange={(e: any) => {
                           handleRadioButtonChange(e);
                         }}
@@ -425,9 +383,6 @@ const Modelform = () => {
                       value: item.value,
                       label: item.name,
                     }))}
-                    // value={category}
-
-                    // placeholder="uncategorized"
                     onChange={(e: any) => {
                       mysetEducation(e);
                     }}
@@ -471,12 +426,6 @@ const Modelform = () => {
                   defaultValue={Defaultvalue}
                   type="text"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-
-                  //   className={
-                  //     errors?.name
-                  //       ? "text-xs border p-3 rounded mt-3 border-red-600 bg-red-50 "
-                  //       : "text-xs border border-gray-300 p-3 rounded mt-3 focus:border-[#7065d4] hover:border-[#7065d4]"
-                  //   }
                 />
                 {errors?.applicant_income?.type === "required" && (
                   <p className="text-red-600 font-main text-sm mt-1">
@@ -494,11 +443,6 @@ const Modelform = () => {
                   defaultValue={Defaultvalue}
                   type="text"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                  //   className={
-                  //     errors?.name
-                  //       ? "text-xs border p-3 rounded mt-3 border-red-600 bg-red-50 "
-                  //       : "text-xs border border-gray-300 p-3 rounded mt-3 focus:border-[#7065d4] hover:border-[#7065d4]"
-                  //   }
                 />
                 {errors?.coapplicant_income?.type === "required" && (
                   <p className="text-red-600 font-main text-sm mt-1">
@@ -517,11 +461,6 @@ const Modelform = () => {
                   type="text"
                   placeholder="Loan amount "
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                  //   className={
-                  //     errors?.name
-                  //       ? "text-xs border p-3 rounded mt-3 border-red-600 bg-red-50 "
-                  //       : "text-xs border border-gray-300 p-3 rounded mt-3 focus:border-[#7065d4] hover:border-[#7065d4]"
-                  //   }
                 />
                 {errors?.loan_amount?.type === "required" && (
                   <p className="text-red-600 font-main text-sm mt-1">
@@ -540,11 +479,6 @@ const Modelform = () => {
                   type="text"
                   placeholder="Terms of loan"
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                  //   className={
-                  //     errors?.name
-                  //       ? "text-xs border p-3 rounded mt-3 border-red-600 bg-red-50 "
-                  //       : "text-xs border border-gray-300 p-3 rounded mt-3 focus:border-[#7065d4] hover:border-[#7065d4]"
-                  //   }
                 />
                 {errors?.loan_amount_term?.type === "required" && (
                   <p className="text-red-600 font-main text-sm mt-1">
@@ -603,7 +537,7 @@ const Modelform = () => {
                 )}
               </div>
 
-              <button className=" px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
+              <button className=" px-4 py-2 text-white font-medium bg-purple-600 hover:bg-purple-500 active:bg-purple-600 rounded-lg duration-150">
                 Predict
               </button>
             </form>

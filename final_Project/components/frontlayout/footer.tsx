@@ -85,7 +85,7 @@ const Footer = () => {
                     required
                   ></textarea>
                 </div>
-                <button className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow">
+                <button className="block w-auto py-3 px-4 font-medium text-sm text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow">
                   Send Feedback
                 </button>
               </form>

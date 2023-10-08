@@ -257,7 +257,7 @@ const Logins = () => {
                   </div>
                 </Link>
                 <button
-                  className="w-full font-medium text-lg text-white bg-primary py-3 rounded-md hover:bg-white hover:text-primary border hover:border-primary"
+                  className="w-full font-medium text-lg text-white bg-purple-600 py-3 rounded-md hover:bg-white hover:text-primary border hover:border-primary"
                   type="submit"
                 >
                   Submit

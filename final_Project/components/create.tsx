@@ -112,7 +112,7 @@ const Create = () => {
       <div>
         <div className="px-20 max-lg:px-10 max-sm:px-5  py-10">
           <div className="flex max-lg:flex-col ">
-            <div className="flex-1  bg-primary rounded-l-md px-10 py-10 text-white">
+            <div className="flex-1  bg-purple-600 rounded-l-md px-10 py-10 text-white">
               <div className="text-4xl font-semibold ">Sign up</div>
               <div className="py-5">Sign up to create your account</div>
               <div className="">Already member of Loan Predictor</div>
@@ -355,7 +355,7 @@ const Create = () => {
                   </div>
                 </Link>
                 <button
-                  className="w-full font-medium text-lg text-white bg-primary py-3 rounded-md hover:bg-white hover:text-primary border hover:border-primary"
+                  className="w-full font-medium text-lg text-white bg-purple-600 py-3 rounded-md hover:bg-white hover:text-primary border hover:border-primary"
                   type="submit"
                 >
                   Submit

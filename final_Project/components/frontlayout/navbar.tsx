@@ -112,7 +112,7 @@ const Navbar = () => {
                   <>
                     <li>
                       <Link href="/predict">
-                        <div className="block py-3 px-4 font-medium text-center text-indigo-600 border-indigo-600 hover:text-white hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
+                        <div className="block py-3 px-4 font-medium text-center text-purple-600 border-indigo-600 hover:text-white hover:bg-purple-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
                           Predict
                         </div>
                       </Link>
@@ -121,7 +121,7 @@ const Navbar = () => {
                       <Link href="/">
                       <div
                         onClick={handlelogout}
-                        className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                        className="block py-3 px-4 font-medium text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow md:inline"
                       >
                         Log out
                       </div>
@@ -132,7 +132,7 @@ const Navbar = () => {
                       {/* <Link href="/signup"> */}
                       <div
                         onClick={handledashboard}
-                        className="block cursor-pointer py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
+                        className="block cursor-pointer py-3 px-4 font-medium text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow md:inline"
                       >
                         Dashboard
                       </div>
@@ -144,14 +144,14 @@ const Navbar = () => {
                   <>
                     <li>
                       <Link href="/login">
-                        <div className="block py-3 text-center text-gray-700 hover:text-indigo-600 border rounded-lg md:border-none">
+                        <div className="block py-3 text-center text-gray-700 hover:text-purple-600 border rounded-lg md:border-none">
                           Log in
                         </div>
                       </Link>
                     </li>
                     <li>
                       <Link href="/signup">
-                        <div className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline">
+                        <div className="block py-3 px-4 font-medium text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow md:inline">
                           Sign Up
                         </div>
                       </Link>
