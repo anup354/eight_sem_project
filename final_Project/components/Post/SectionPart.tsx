@@ -1,7 +1,13 @@
 import React from 'react'
-
+import { useRouter } from "next/router";
 const SectionPart = ({posts}) => {
+  const router = useRouter();
   console.log(posts);
+  const handleEditClick = async (e, slug) => {
+    e.preventDefault();
+    router.push(`/posts/${slug}`);
+    console.log("hello id", slug);
+  };
   return (
     <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 mt-10">
           <div className="flex items-center justify-between mb-4 ">
@@ -37,6 +43,10 @@ const SectionPart = ({posts}) => {
                     <a
                      href={`/posts/${post.id}`} 
                       class="text-lg font-bold leading-6 text-gray-900 dark:text-white hover:underline"
+                      onClick={(e) => {
+                        e.preventDefault(); // Prevent the default link behavior
+                        handleEditClick(e, post.slug); // Call the custom function with the appropriate arguments
+                      }}
                     >
                       {post.blog_name}
                     </a>
