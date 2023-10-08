@@ -127,3 +127,29 @@ module.exports.addmessage = async (request, response) => {
     })
 
 };
+
+module.exports.getFeedback = async (request, response) => {
+    const connection = await db.conn();
+    const getquery = `select *  from feedback join registration on feedback.user_id=registration.registration_id `
+    // ORDER BY category_order ASC
+    connection.query(getquery, (err, result) => {
+       
+        connection.release();
+
+        if (err) {
+            return response.status(400).json({
+                message: "Some problem occured",
+                sucess: false,
+            })
+
+        }
+        else {
+            return response.status(200).json({
+                message: "Sucess",
+                sucess: true,
+                data: result
+
+            })
+        }
+    })
+};

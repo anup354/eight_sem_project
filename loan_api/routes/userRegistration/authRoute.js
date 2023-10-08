@@ -6,4 +6,5 @@ const { authMiddleware } = require("../../middleware/auth");
 router.post('/api/register', authcontroller.register)
 router.post('/api/login', authcontroller.login)
 router.post('/api/feedback',authMiddleware, authcontroller.addmessage)
+router.get('/api/feedback',authcontroller.getFeedback)
 module.exports = router;

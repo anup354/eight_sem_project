@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 import Head from "next/head";
+// import "chartjs-plugin-annotation";
 
 const AdminDashboard = () => {
   const chartRef = useRef(null);
@@ -54,6 +55,18 @@ const AdminDashboard = () => {
     const passLabels = Object.keys(passCounts);
     const passValues = Object.values(passCounts);
     console.log("pass", passValues);
+    const annotations = passValues.map((value, index) => ({
+      type: "line",
+      mode: "vertical",
+      scaleID: "x",
+      value: index, // Position on the x-axis
+      borderColor: "black", // Line color
+      borderWidth: 1, // Line width
+      label: {
+        content: passLabels[index], // Label content (from passLabels)
+        position: "top", // Label position (top, bottom, etc.)
+      },
+    }));
     const chartData = {
       labels: passLabels,
       datasets: [
@@ -78,6 +91,13 @@ const AdminDashboard = () => {
       data: chartData,
       options: {
         scales: {
+          x: { // x-axis options
+            display: true, // Display the x-axis
+            title: {
+              display: true,
+              text: "Status", // x-axis label
+            },
+          },
           y: {
             beginAtZero: true,
             ticks: {
@@ -85,13 +105,16 @@ const AdminDashboard = () => {
             },
             title: {
               display: true,
-              text: "number of prediction",
+              text: "Number of Prediction",
             },
           },
         },
         plugins: {
           legend: {
             display: false,
+          },
+          annotation: { // Annotation plugin configuration
+            annotations: annotations, // Added the annotations we created
           },
         },
         responsive: true,

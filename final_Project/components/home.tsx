@@ -2,7 +2,7 @@ import house from "../public/images/house.jpg";
 import Image from "next/image";
 import Head from "next/head";
 import React, { useState } from 'react';
-
+import logo from '../public/images/images.jpeg'
 const Home = () => {
   const [isLearnMoreOpen, setLearnMoreOpen] = useState(false);
 
@@ -20,12 +20,18 @@ const Home = () => {
             <div className="flex-1 sm:hidden lg:block">
               {/* <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" className="md:max-w-lg sm:rounded-lg" alt="" /> */}
               <Image
-                src='https://imgnew.outlookindia.com/uploadimage/library/16_9/16_9_2/IMAGE_1651483122.webp'
-                width={450}
+                src={logo}
+                width={650}
                 height={450}
                 className="w-full"
                 alt="img"
               />
+               {/* <Image
+                  src={logo}
+                  width={120}
+                  height={120}
+                  alt="Float UI logo"
+                /> */}
             </div>
             <div className="max-w-xl px-4 space-y-3 mt-6 sm:px-0 md:mt-0 lg:max-w-2xl">
   <h3 className="text-indigo-600 font-semibold">

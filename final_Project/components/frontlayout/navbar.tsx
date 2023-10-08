@@ -5,6 +5,9 @@ import logo from "../../public/images/money.svg";
 import Head from "next/head";
 import { useAuth } from "../context/AuthProvider";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Navbar = () => {
   const [state, setState] = useState(false);
   const auth = useAuth();
@@ -17,12 +20,19 @@ const Navbar = () => {
             router.push("/portal/dashboard");
     }
   };
+  const handlelogout=()=>{
+    const logout= auth?.logout();
+    toast.success("Successfully Logout")
+
+  }
 
   return (
     <div className="border sticky top-0 z-[999]">
       <Head>
         <title>Prediction | Load Predictor</title>
       </Head>
+      <ToastContainer />
+
       <nav className="bg-white border-b w-full md:static md:text-sm md:border-none">
         <div className="items-center px-4 max-w-screen-2xl mx-auto md:flex md:px-8">
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -94,10 +104,8 @@ const Navbar = () => {
                   Loan News
                 </li>
               </Link>
-              <Link href="/downloadPred">
-              <li className="text-gray-600 hover:text-indigo-600">Loan News</li>
-              </Link>
-              <li className="text-gray-600 hover:text-indigo-600">Partners</li>
+             
+            
               <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
               <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
                 {auth?.user?.token ? (
@@ -112,7 +120,7 @@ const Navbar = () => {
                     <li>
                       <Link href="/">
                       <div
-                        onClick={() => auth?.logout()}
+                        onClick={handlelogout}
                         className="block py-3 px-4 font-medium text-center text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 active:shadow-none rounded-lg shadow md:inline"
                       >
                         Log out
