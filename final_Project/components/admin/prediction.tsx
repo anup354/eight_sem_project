@@ -288,14 +288,11 @@ const AdminPrediction = () => {
       };
       const response = await axios.get(
         `http://localhost:8080/api/predict`
-        // `${BaseUrl}api/v1/herosection`
-        // , {headers}
       );
       console.log("aa", response);
 
       const column = response.data.column;
       setColumn(column);
-
       setloan(response.data.data);
       setRenderapp(true);
     } catch (error) {
@@ -304,25 +301,6 @@ const AdminPrediction = () => {
   }, [setColumn, setloan, token]);
 
   const [tree, setTree] = useState(false);
-  // const [data2, setData2] = useState(null)
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const [response1, response2] = await Promise.all([
-  //       fetch('/api/data1'),
-  //       fetch('/api/data2')
-  //     ])
-
-  //     const data1 = await response1.json()
-  //     const data2 = await response2.json()
-
-  //     setData1(data1)
-  //     setData2(data2)
-  //   }
-
-  //   fetchData()
-  // }, [])
-
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`http://localhost:8080/api/predict/${id}`);

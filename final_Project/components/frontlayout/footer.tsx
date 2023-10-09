@@ -59,25 +59,17 @@ const Footer = () => {
 
         <div className="max-w-screen-xl mx-auto px-4 md:px-8">
           <div className="justify-between items-center gap-12 md:flex">
-            {/* <Link href="/predict"> */}
             <div className="flex-1 max-w-lg">
               <h3 className="text-2xl font-bold">
                 Get best loan predictor system.
               </h3>
             </div>
-            {/* </Link> */}
             <div className="flex-1 mt-6 md:mt-0">
               <form
                 onSubmit={handlesubmit}
                 className="flex items-center gap-x-3 md:justify-end"
               >
                 <div>
-                  {/* <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    className="w-full pl-12 pr-3 py-2 text-gray-500 bg-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                  /> */}
                   <textarea
                     className="w-64 h-16 p-2 rounded border border-gray-300 focus:border-blue-500"
                     placeholder="Enter text..."

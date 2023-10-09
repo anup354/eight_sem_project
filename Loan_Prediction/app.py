@@ -24,14 +24,14 @@ def predict():
         Loan_Amount_Term = request.form.get('Loan_Amount_Term')   
         Credit_History = request.form.get('Credit_History')   
         Property_Area = request.form.get('Property_Area')  
-
+    #preprocess the data before prediction
     prediction = utils.preprocessdata(Gender, Married, Education, Self_Employed, ApplicantIncome,
        CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History,
        Property_Area)
 
     return render_template('predict.html', prediction=prediction) 
     
-
+#checks whether the current script is being run as the main program
 if __name__ == '__main__': 
     app.run(debug=True) 
     

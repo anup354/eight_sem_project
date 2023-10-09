@@ -17,23 +17,6 @@ const Posts = () => {
   useEffect(() => {
     loadBlog();
   }, []);
-
-  // useEffect(() => {
-  //   fetch("/api/getPosts")
-  //     .then((response) => response.json())
-  //     .then((result) => {
-
-  //       const sortedPosts = result.sort((a, b) => {
-  //         const dateA = new Date(a.date);
-  //         const dateB = new Date(b.date);
-  //         return dateB - dateA;
-  //       });
-  //       setPosts(sortedPosts);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
-  // }, []);
   const handleEditClick = async (e, slug) => {
     e.preventDefault();
     router.push(`/posts/${slug}`);

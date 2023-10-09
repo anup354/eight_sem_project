@@ -17,14 +17,13 @@ const Navbar = () => {
     if (auth.user?.role === "ADMIN") {
       router.push("/admin/dashboard");
     } else {
-            router.push("/portal/dashboard");
+      router.push("/portal/dashboard");
     }
   };
-  const handlelogout=()=>{
-    const logout= auth?.logout();
-    toast.success("Successfully Logout")
-
-  }
+  const handlelogout = () => {
+    const logout = auth?.logout();
+    toast.success("Successfully Logout");
+  };
 
   return (
     <div className="border sticky top-0 z-[999]">
@@ -88,24 +87,39 @@ const Navbar = () => {
               state ? "block" : "hidden"
             }`}
           >
+           
             <ul className="justify-end items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
               <Link href="/Details">
-                <li className="text-gray-600 hover:text-indigo-600">
+                <li
+                  className={`${
+                    router.pathname === "/Details"
+                      ? "active underline text-gray-600"
+                      : ""
+                  }  text-gray-500 `}
+                  // className="text-gray-600 hover:text-indigo-600"
+                >
                   Bank Details
                 </li>
               </Link>
               <Link href="/Bank">
-                <li className="text-gray-600 hover:text-indigo-600">
+                <li className={`${
+                    router.pathname === "/Bank"
+                      ? "active underline text-gray-600"
+                      : ""
+                  }  text-gray-500 `}>
                   Loan Advice
                 </li>
               </Link>
               <Link href="/Blog">
-                <li className="text-gray-600 hover:text-indigo-600">
+                <li className={`${
+                    router.pathname === "/Blog"
+                      ? "active underline text-gray-600"
+                      : ""
+                  }  text-gray-500 `}>
                   Loan News
                 </li>
               </Link>
-             
-            
+
               <span className="hidden w-px h-6 bg-gray-300 md:block"></span>
               <div className="space-y-3 items-center gap-x-6 md:flex md:space-y-0">
                 {auth?.user?.token ? (
@@ -119,13 +133,12 @@ const Navbar = () => {
                     </li>
                     <li>
                       <Link href="/">
-                      <div
-                        onClick={handlelogout}
-                        className="block py-3 px-4 font-medium text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow md:inline"
-                      >
-                        Log out
-                      </div>
-
+                        <div
+                          onClick={handlelogout}
+                          className="block py-3 px-4 font-medium text-center text-white bg-purple-600 hover:bg-purple-500 active:bg-purple-700 active:shadow-none rounded-lg shadow md:inline"
+                        >
+                          Log out
+                        </div>
                       </Link>
                     </li>
                     <li>

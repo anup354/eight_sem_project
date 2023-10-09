@@ -17,13 +17,6 @@ const portalTop = () => {
             </div>
             <div className="w-1/2 flex justify-end">
               <div className=" flex items-center">
-                {/* <Link href="/portal/loadfund">
-                <div className="mr-4">
-                  <button className="border border-primary px-4 py-2 rounded-xl mr-5 text-primary bg-white hover:bg-primary hover:text-white">
-                    Load Fund
-                  </button>
-                </div>
-                </Link> */}
                 <div className="">Hello Cousultancy</div>
               </div>
             </div>

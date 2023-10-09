@@ -13,33 +13,6 @@ const AdminDashboard = () => {
     const response = await axios.get("http://localhost:8080/api/predict");
     console.log(response.data.data);
     const data = response.data.data;
-    // const data = [
-    //   {
-    //     id: 2,
-    //     name: "aaa",
-    //     address: "ddd",
-    //     Result: "yes",
-    //   },
-    //   {
-    //     id: 4,
-    //     name: "dsd",
-    //     address: "ddd",
-    //     Result: "no",
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "asas",
-    //     address: "ddd",
-    //     Result: "no",
-    //   },
-    //   {
-    //     id: 1,
-    //     name: "sdd",
-    //     address: "ddd",
-    //     Result: "yes",
-    //   },
-    // ];
-
     const passCounts = {
       yes: 0,
       no: 0,
